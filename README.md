@@ -18,4 +18,4 @@ pnpm run dev
 - `hogeResponse`:API の返り値の定義
 - `hogeParams`:URL パラメータから受け取る値の定義
 - `hogeQuery`:query の値の定義
-- `hogeRequestBody`:requestBody の構造定義# hono_gen_openapi
+- `hogeRequestBody`:requestBody の構造定義
