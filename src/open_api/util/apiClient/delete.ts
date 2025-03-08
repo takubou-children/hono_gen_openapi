@@ -1,29 +1,27 @@
-import { AnyZodObject, ZodEffects, ZodSchema } from "zod";
+import { AnyZodObject, ZodSchema } from "zod";
 import { RouteConfig } from "@hono/zod-openapi";
-import { ZodObjectWithEffect } from "../type/params";
+import { ZodObjectWithEffect } from "../../type/params";
 
-type getRouteProps = {
-  path: any;
+type deleteRouteProps = {
+  path: string;
   paramsSchema?: ZodSchema<any>;
   responsesSchema: ZodSchema<any>;
-  querySchema?: ZodSchema<any>;
   tags: string;
-  description?: string;
   summary?: string;
+  description?: string;
 };
 
-export const getRoute = (
-  props: getRouteProps
+export const deleteRoute = (
+  props: deleteRouteProps
 ): Omit<RouteConfig, "path"> & { path: string } => {
   return {
-    method: "get",
+    method: "delete",
     path: props.path,
     summary: props.summary,
     tags: [props.tags],
     description: props.description,
     request: {
       params: props.paramsSchema as AnyZodObject | ZodObjectWithEffect,
-      query: props.querySchema as AnyZodObject | ZodObjectWithEffect,
     },
     responses: {
       200: {
@@ -34,6 +32,7 @@ export const getRoute = (
         },
         description: "Successful response",
       },
+
       404: {
         description: "Resource not found",
       },

@@ -5,7 +5,12 @@ import {
   profileParams,
   profileSchema,
 } from "./schema";
-import { getRoute, postRoute, putRoute, deleteRoute } from "../../util";
+import {
+  getRoute,
+  postRoute,
+  putRoute,
+  deleteRoute,
+} from "../../util/apiClient";
 import { getListQuery } from "../../schema/query";
 const ProfileCreateRoute = postRoute({
   path: "profiles",

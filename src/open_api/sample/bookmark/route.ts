@@ -5,7 +5,12 @@ import {
   bookmarkParams,
   bookmarkRequestBody,
 } from "./schema";
-import { getRoute, postRoute, putRoute, deleteRoute } from "../../util";
+import {
+  getRoute,
+  postRoute,
+  putRoute,
+  deleteRoute,
+} from "../../util/apiClient";
 import { getListQuery } from "../../schema/query";
 
 const BookmarkCreateRoute = postRoute({
