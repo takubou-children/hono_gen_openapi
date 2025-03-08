@@ -1,12 +1,12 @@
 // src/open_api/type/httpErrorFlag.ts
-import { z } from "zod"; // Zodをインポート
+import { z } from "@hono/zod-openapi";
 
 export interface HttpErrorMessageInterface {
   Success: string;
-  Forbidden?: string;
+  Forbidden: string;
   NotFound: string;
-  BadRequest?: string;
-  Unauthorized?: string;
+  BadRequest: string;
+  Unauthorized: string;
   InternalServerError: string;
 }
 
@@ -18,29 +18,28 @@ export const httpErrorMessage: HttpErrorMessageInterface = {
   Unauthorized: "セッションが切れました。再度ログインしてください",
   InternalServerError: "サーバーエラーが発生しました",
 } as const;
-export type ttpErrorMessageKey = keyof HttpErrorMessageInterface;
-export type HttpErrorMessages = keyof HttpErrorMessageInterface;
-const statusNumbers = [200, 403, 404, 400, 401, 500] as const;
-export type HttpStatusNumber = (typeof statusNumbers)[number];
+
+// 共通の関数を定義
+const createErrorMessageSchema = (message: string) => z.string({ message });
 
 export const httpErrorMessageSchema = z.object({
   Success: z.object({
-    message: z.string().optional(),
+    message: createErrorMessageSchema(httpErrorMessage.Success),
   }),
   Forbidden: z.object({
-    message: z.string().optional(),
+    message: createErrorMessageSchema(httpErrorMessage.Forbidden),
   }),
   NotFound: z.object({
-    message: z.string().optional(),
+    message: createErrorMessageSchema(httpErrorMessage.NotFound),
   }),
   BadRequest: z.object({
-    message: z.string().optional(),
+    message: createErrorMessageSchema(httpErrorMessage.BadRequest),
   }),
   Unauthorized: z.object({
-    message: z.string().optional(),
+    message: createErrorMessageSchema(httpErrorMessage.Unauthorized),
   }),
   InternalServerError: z.object({
-    message: z.string().optional(),
+    message: createErrorMessageSchema(httpErrorMessage.InternalServerError),
   }),
 });
 
