@@ -1,4 +1,6 @@
 // src/open_api/type/httpErrorFlag.ts
+import { z } from "zod"; // Zodをインポート
+
 export interface HttpErrorMessageInterface {
   Success: string;
   Forbidden?: string;
@@ -21,11 +23,25 @@ export type HttpErrorMessages = keyof HttpErrorMessageInterface;
 const statusNumbers = [200, 403, 404, 400, 401, 500] as const;
 export type HttpStatusNumber = (typeof statusNumbers)[number];
 
-export const HTTPErrors: Record<HttpStatusNumber, string> = {
-  200: httpErrorMessage.Success,
-  403: httpErrorMessage.Forbidden ?? "",
-  404: httpErrorMessage.NotFound,
-  400: httpErrorMessage.BadRequest ?? "",
-  401: httpErrorMessage.Unauthorized ?? "",
-  500: httpErrorMessage.InternalServerError,
-} as const;
+export const httpErrorMessageSchema = z.object({
+  Success: z.object({
+    message: z.string().optional(),
+  }),
+  Forbidden: z.object({
+    message: z.string().optional(),
+  }),
+  NotFound: z.object({
+    message: z.string().optional(),
+  }),
+  BadRequest: z.object({
+    message: z.string().optional(),
+  }),
+  Unauthorized: z.object({
+    message: z.string().optional(),
+  }),
+  InternalServerError: z.object({
+    message: z.string().optional(),
+  }),
+});
+
+export type HttpErrorMessageType = z.infer<typeof httpErrorMessageSchema>;

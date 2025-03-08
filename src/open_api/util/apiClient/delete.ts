@@ -1,6 +1,7 @@
 import { AnyZodObject, ZodSchema } from "zod";
 import { RouteConfig } from "@hono/zod-openapi";
-import { ZodObjectWithEffect } from "../../@types/params";
+import { httpErrorMessageSchema } from "../../@types/responceHttpStatus";
+import { ZodObjectWithEffect } from "../../@types/config";
 
 type deleteRouteProps = {
   path: string;
@@ -27,7 +28,7 @@ export const deleteRoute = (
       200: {
         content: {
           "application/json": {
-            schema: props.responsesSchema,
+            schema: httpErrorMessageSchema,
           },
         },
         description: "Successful response",

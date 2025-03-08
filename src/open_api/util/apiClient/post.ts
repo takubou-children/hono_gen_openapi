@@ -1,6 +1,7 @@
 import { AnyZodObject, ZodSchema } from "zod";
-import { ZodObjectWithEffect } from "../../@types/params";
 import { RouteConfig } from "@hono/zod-openapi";
+import { ZodObjectWithEffect } from "../../@types/config";
+import { HttpErrorMessageType } from "../../@types/responceHttpStatus";
 
 type postRouteProps = {
   path: string;
@@ -10,6 +11,7 @@ type postRouteProps = {
   tags: string;
   description?: string;
   summary?: string;
+  ErrorResponses: HttpErrorMessageType;
 };
 
 export const postRoute = (
@@ -41,9 +43,19 @@ export const postRoute = (
         description: "Successful response",
       },
       404: {
+        content: {
+          "application/json": {
+            schema: props.ErrorResponses.NotFound,
+          },
+        },
         description: "Resource not found",
       },
       500: {
+        content: {
+          "application/json": {
+            schema: props.ErrorResponses.InternalServerError,
+          },
+        },
         description: "Internal server error",
       },
     },
