@@ -1,6 +1,6 @@
 import { AnyZodObject, ZodSchema } from "zod";
 import { RouteConfig } from "@hono/zod-openapi";
-import { ZodObjectWithEffect } from "../../type/params";
+import { ZodObjectWithEffect } from "../../@types/params";
 
 type deleteRouteProps = {
   path: string;

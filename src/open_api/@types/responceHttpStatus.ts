@@ -16,12 +16,11 @@ export const httpErrorMessage: HttpErrorMessageInterface = {
   Unauthorized: "セッションが切れました。再度ログインしてください",
   InternalServerError: "サーバーエラーが発生しました",
 } as const;
-
+export type ttpErrorMessageKey = keyof HttpErrorMessageInterface;
 export type HttpErrorMessages = keyof HttpErrorMessageInterface;
-
 const statusNumbers = [200, 403, 404, 400, 401, 500] as const;
-
 export type HttpStatusNumber = (typeof statusNumbers)[number];
+
 export const HTTPErrors: Record<HttpStatusNumber, string> = {
   200: httpErrorMessage.Success,
   403: httpErrorMessage.Forbidden ?? "",

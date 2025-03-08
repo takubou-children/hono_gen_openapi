@@ -1,7 +1,7 @@
 import { AnyZodObject, ZodSchema } from "zod";
-import { ZodObjectWithEffect } from "../../type/params";
+import { ZodObjectWithEffect } from "../../@types/params";
 import { RouteConfig } from "@hono/zod-openapi";
-import { ZodRequestBody } from "../../type/body";
+import { ZodRequestBody } from "../../@types/body";
 
 type putRouteProps = {
   path: string;
