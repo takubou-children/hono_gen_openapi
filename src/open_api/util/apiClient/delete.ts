@@ -28,16 +28,25 @@ export const deleteRoute = (
       200: {
         content: {
           "application/json": {
-            schema: httpErrorMessageSchema,
+            schema: props.responsesSchema,
           },
         },
         description: "Successful response",
       },
-
       404: {
+        content: {
+          "application/json": {
+            schema: httpErrorMessageSchema.shape.NotFound,
+          },
+        },
         description: "Resource not found",
       },
       500: {
+        content: {
+          "application/json": {
+            schema: httpErrorMessageSchema.shape.InternalServerError,
+          },
+        },
         description: "Internal server error",
       },
     },
