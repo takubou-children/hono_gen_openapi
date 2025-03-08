@@ -20,5 +20,5 @@ pnpm run dev
 - `hogeQuery`:query の値の定義
 - `hogeRequestBody`:requestBody の構造定義
 ## 使用方法
-`/api/ui`:swaggerUIの表示
-`/apidoc`:openapiドキュメントの表示
+- `/api/ui`:swaggerUIの表示
+- `/apidoc`:openapiドキュメントの表示
